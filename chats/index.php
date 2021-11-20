@@ -35,7 +35,7 @@
                         <?php
                         $postDetails = $postCrud->getPostById($chat->getPostId());
                         ?>
-                        <tr onclick="window.location='chat/?chat_id=<?php echo $chat->getChatId(); ?>&post_id=<?php echo $chat->getPostId(); ?>&mentee_id=<?php echo $chat->getMentee(); ?>&mentor_id=<?php echo $chat->getMentor(); ?>'">
+                        <tr onclick="window.location='../chat/?chat_id=<?php echo $chat->getChatId(); ?>&post_id=<?php echo $chat->getPostId(); ?>&mentee_id=<?php echo $chat->getMentee(); ?>&mentor_id=<?php echo $chat->getMentor(); ?>'">
                             <td>
                                 <b>Mentee: <?php echo $chat->getMentee(); ?></b>
                                 <p>Subjects: <?php echo $postDetails->getSubject(); ?></p>

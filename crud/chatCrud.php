@@ -77,5 +77,21 @@
                 return null;
             }
         }
+
+        public function getChatsByMenteeMentor($mentee, $mentor) {
+            try {
+                $chats = [];
+                $pdo = (new SQLConnection())->connect();
+                $stmt = $pdo->prepare("SELECT * FROM CHAT WHERE MENTEE = ? AND MENTOR = ?");
+                $stmt->execute([$mentee, $mentor]);
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    array_push($chats, new Chat($row["CHAT_ID"], $row["POST_ID"], $row["MENTOR"], $row["MENTEE"], $row["TEXT"], $row["TIMESTAMP"]));
+                }
+                return $chats;
+            } catch (Exception $e) {
+                error_log($e->getMessage());
+                return [];
+            }
+        }
     }
 ?>
