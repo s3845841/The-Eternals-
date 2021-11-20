@@ -24,7 +24,15 @@
         header('Refresh:0');
         exit();
     }
+/**
 
+get all chats
+list based off timestamp
+auto scrolled to the end
+
+based on current user - they go to the right
+
+*/
 ?>
 <!DOCTYPE HTML>
 <html>

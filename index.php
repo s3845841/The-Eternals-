@@ -135,8 +135,8 @@
                                 <p>Subjects: <?php echo $postDetails->getSubject(); ?></p>
                             </td>
                             <td>
-                            <?php if ($chat->getAddress() != null) { ?>
-                                <p>Area: <?php echo $chat->getAddress(); ?></p>
+                            <?php if ($postDetails->getAddress() != null) { ?>
+                                <p>Area: <?php echo $postDetails->getAddress(); ?></p>
                             <?php } ?>
                             </td>
                             <td>

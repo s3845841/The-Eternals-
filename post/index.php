@@ -13,8 +13,7 @@
         $post = $postCrud->getPostById($postId);
         $mentee = $userCrud->getUserByEmail($post->getEmail());
         $name = $address = $subject = $description = "";
-        print_r($mentee);
-//         $name = $mentee->getName();
+        $name = $mentee->getName();
         $address = $post->getAddress();
         $subject = $post->getSubject();
         $description = $post->getDescription();
