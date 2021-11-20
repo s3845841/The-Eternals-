@@ -30,44 +30,6 @@
         <link rel="stylesheet" type="text/css" href="../styles/loginrego.css"> 
     </head>
     <body>
-        <!-- <header>
-            <nav class="navbar navbar-expand-lg navbar-dark edupal-nav mb-2">
-                <div class="container-fluid">
-                    <button
-                            class="navbar-toggler"
-                            type="button"
-                            data-mdb-toggle="collapse"
-                            data-mdb-target="#navbarExample01"
-                            aria-controls="navbarExample01"
-                            aria-expanded="false"
-                            aria-label="Toggle navigation"
-                    >
-                        <i class="fas fa-bars"></i>
-                    </button>
-                
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link edupal-logo" aria-current="page" href="" style="color: black;">
-                                EduPal
-                            </a>
-                        </li>
-                    </ul>
-
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link edupal-links" href="about/">
-                            About Us
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link edupal-links" href="login/">
-                            Log In
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header> -->
         <?php
         require_once('../includes/header.inc.php');
         ?>

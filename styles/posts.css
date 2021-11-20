@@ -22,8 +22,20 @@ tr:hover {
     background-color: #e2e2e2;
 }
 
+#create {
+    width: 100pt;
+    font-weight: bold;
+    padding: 10pt 0 10pt 0;
+    border: none;
+    border-radius: 9pt;
+    cursor: pointer;
+    text-align: center;
+    border: 1pt solid #000000;
+    color: #000000;
+    background-color: #ffffff;
+}
 
-/* tr:nth-child(1) {
-    border: 1px solid black;
-
-} */
+#create:hover {
+    border: 1pt solid #646464;
+    background-color: #d4d4d4;
+}

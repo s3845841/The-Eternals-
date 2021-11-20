@@ -1,5 +1,5 @@
 <?php require_once('../model/user.php'); ?>
-<?php require_once('../model/user.php'); ?>
+<?php require_once('../model/post.php'); ?>
 <?php require_once('../includes/functions.inc.php'); ?>
 <?php require_once('../crud/postCrud.php'); ?>
 
@@ -48,6 +48,15 @@
         <?php } else { ?>
             <h2 class="aligncenter">You have no posts. Create one to get help face-to-face from those around your neighbourhood!</h2>
 
+        <?php } ?>
+
+        <?php if ($currentUser->getMemberType() == "mentee") { ?>
+            <br>
+            <div class="aligncenter">
+                <a class="aligncenter" href="../createpost/">
+                <button  id="create" type="button">CREATE</button>
+                </a>
+            </div>
         <?php } ?>
 
     </article>
