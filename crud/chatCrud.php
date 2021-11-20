@@ -34,7 +34,7 @@
             try {
                 $chats = [];
                 $pdo = (new SQLConnection())->connect();
-                $stmt = $pdo->prepare("SELECT * FROM CHAT WHERE MENTOR = ? GROUP BY MENTOR AND MENTEE");
+                $stmt = $pdo->prepare("SELECT * FROM CHAT WHERE MENTOR = ? GROUP BY POST_ID, MENTOR, MENTEE");
                 $stmt->execute([$mentor]);
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     array_push($chats, new Chat($row["CHAT_ID"], $row["POST_ID"], $row["MENTOR"], $row["MENTEE"], $row["TEXT"], $row["TIMESTAMP"], $row["RECIPIENT"]));
@@ -50,7 +50,7 @@
             try {
                 $chats = [];
                 $pdo = (new SQLConnection())->connect();
-                $stmt = $pdo->prepare("SELECT * FROM CHAT WHERE MENTEE = ? GROUP BY MENTOR AND MENTEE");
+                $stmt = $pdo->prepare("SELECT * FROM CHAT WHERE MENTEE = ? GROUP BY POST_ID, MENTOR, MENTEE");
                 $stmt->execute([$mentee]);
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     array_push($chats, new Chat($row["CHAT_ID"], $row["POST_ID"], $row["MENTOR"], $row["MENTEE"], $row["TEXT"], $row["TIMESTAMP"], $row["RECIPIENT"]));

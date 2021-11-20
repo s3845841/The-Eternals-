@@ -47,7 +47,11 @@
                         ?>
                         <tr onclick="window.location='../chat/?chat_id=<?php echo $chat->getChatId(); ?>&post_id=<?php echo $chat->getPostId(); ?>&mentee_id=<?php echo $chat->getMentee(); ?>&mentor_id=<?php echo $chat->getMentor(); ?>'">
                             <td>
-                                <b>Mentee: <?php echo $chat->getMentee(); ?></b>
+                                <?php if ($currentUser->getMemberType() == "mentor") { ?>
+                                    <b>Mentee: <?php echo $chat->getMentee(); ?></b>
+                                <?php } else { ?>
+                                    <b>Mentor: <?php echo $chat->getMentor(); ?></b>
+                                <?php } ?>
                                 <p>Subjects: <?php echo $postDetails->getSubject(); ?></p>
                             </td>
                             <td>
