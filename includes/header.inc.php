@@ -27,7 +27,7 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link edupal-logo" aria-current="page" href="<?php echo $prefix; ?>" style="color: black;">
-                        EduPal
+                    <img class="home-page-image" src="<?php echo $prefix; ?>images/logo.png" alt="" width="15%">    
                     </a>
                 </li>
             </ul>
