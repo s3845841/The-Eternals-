@@ -9,12 +9,16 @@
     } else {
         $date = new DateTime();
         $userCrud = new UserCrud();
+        $chatCrud = new ChatCrud();
         $url = $_SERVER['REQUEST_URI'];
         $url_components = parse_url($url);
         parse_str($url_components['query'], $params);
         $mentee = $userCrud->getUserByEmail($params['mentee_id']);
         $menteeName = $mentee->getName();
         $mentor = $userCrud->getUserByEmail($params['mentor_id']);
+        $chats = $chatCrud->getChatsByMenteeMentorPostId($params['mentee_id'], $params['mentor_id'], $params['post_id']);
+        $currentUser = getLoggedInUser();
+
     }
     if (isset($_POST['post'])) {
         $chatCrud = new ChatCrud();
@@ -24,15 +28,7 @@
         header('Refresh:0');
         exit();
     }
-/**
 
-get all chats
-list based off timestamp
-auto scrolled to the end
-
-based on current user - they go to the right
-
-*/
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -51,27 +47,84 @@ based on current user - they go to the right
   </head>
 <body>
   <?php  require_once('../includes/header.inc.php'); ?>
-  <br/>
-  <div class = "text-center">
-    <h1 style="text-align: center;"><?php echo $menteeName?> </h1>
-    <hr />
-    <h4>Name: <?php echo $menteeName?></h4>
-    <br/>
-    <h4>Address: <?php echo $params['chat_id']?></h4>
-    <br/>
-    <h4>Subject: <?php echo $params['post_id']?></h4>
-    <br/>
-    <br/>
-    <hr/>
-      <form id="form" method="post">
-         <div class="noselect">
-           <label for="text"> </label>
-         </div>
-         <textarea rows="1" cols="90" id="text" name="text" required></textarea>
-         <br><br>
-         <input id="post" name="post" type="submit" value="Send">
-      </form>
-  </div>
+  <!-- Main body of Mentor chat -->
+  <div class="container-fluid">
+        <h1 class="welcome">Chat</h1>
 
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <?php if ($currentUser->getMemberType() == "mentee") { ?>
+            <div class="col-sm-2">
+                <h2 class="your-posts-label">Mentor (<?php echo $mentor->getEmail()?>)</h2>
+            </div>
+
+            <div class="col-sm-7"></div>
+
+            <div class="col-sm-2">
+                <h2 class="your-posts-label">Mentee(You) (<?php echo $mentee->getEmail()?>)</h2>
+            </div>
+            <?php } else { ?>
+            <div class="col-sm-2">
+                <h2 class="your-posts-label">Mentee (<?php echo $mentee->getEmail()?>)</h2>
+            </div>
+
+            <div class="col-sm-7"></div>
+
+            <div class="col-sm-1">
+                <h2 class="your-posts-label">You(Mentor) (<?php echo $mentor->getEmail()?>)</h2>
+            </div>
+            <?php } ?>
+            <div class="col-sm-1"></div>
+        </div>
+
+        <hr/>
+    <div class="aligncenter">
+        <div class="chat-messages">
+            <!-- Holder side - notice the class -->
+            <?php foreach ($chats as $chat): ?>
+                <?php if ($chat->getRecipient() == $currentUser->getEmail()){ ?>
+                    <div class="message-box-holder">
+                        <div class="message-box">
+                            <?php echo $chat->getText()?>
+                        </div>
+                    </div>
+                <?php } else { ?>
+                    <div class="message-box-receiver">
+                        <div class="message-box">
+                            <?php echo $chat->getText()?>
+                        </div>
+                    </div>
+                <?php } ?>
+            <?php endforeach; ?>
+        </div>
+
+    </div>
+
+        <p style="page-break-after: always;">&nbsp;</p>
+        <p style="page-break-before: always;">&nbsp;</p>
+        <p style="page-break-after: always;">&nbsp;</p>
+        <p style="page-break-before: always;">&nbsp;</p>
+        <p style="page-break-after: always;">&nbsp;</p>
+        <p style="page-break-before: always;">&nbsp;</p>
+
+        <hr/>
+
+        <form method="post" id="form" class="form-container">
+            <div class="row">
+                <div class="col-sm-10">
+                    <div class="send-message">
+                        <textarea class="chat-input" id="text" name="text"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-sm-1">
+                    <button id="post" name="post" type="submit" class="posts-buttons see-all-button">Post</button>
+                </div>
+
+                <div class="col-sm-1"></div>
+            </div>
+        </form>
+    </div>
+  <br/>
 </body>
 </html>

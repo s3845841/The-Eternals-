@@ -12,8 +12,8 @@
         public function create(Chat $chat) {
             try {
                 $pdo = (new SQLConnection())->connect();
-                $stmt = $pdo->prepare("INSERT INTO CHAT (CHAT_ID, POST_ID, MENTOR, MENTEE, TEXT, TIMESTAMP) VALUES (?, ?, ?, ?, ?, ?)");
-                $stmt->execute([$chat->getChatId(), $chat->getPostId(), $chat->getMentor(), $chat->getMentee(), $chat->getText(), $chat->getTimestamp()]);
+                $stmt = $pdo->prepare("INSERT INTO CHAT (CHAT_ID, POST_ID, MENTOR, MENTEE, TEXT, TIMESTAMP, RECIPIENT) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                $stmt->execute([$chat->getChatId(), $chat->getPostId(), $chat->getMentor(), $chat->getMentee(), $chat->getText(), $chat->getTimestamp(), $chat->getRecipient()]);
 
             } catch (Exception $e) {
                 error_log($e->getMessage());
@@ -34,10 +34,10 @@
             try {
                 $chats = [];
                 $pdo = (new SQLConnection())->connect();
-                $stmt = $pdo->prepare("SELECT * FROM CHAT WHERE MENTOR = ?");
+                $stmt = $pdo->prepare("SELECT * FROM CHAT WHERE MENTOR = ? GROUP BY MENTOR AND MENTEE");
                 $stmt->execute([$mentor]);
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    array_push($chats, new Chat($row["CHAT_ID"], $row["POST_ID"], $row["MENTOR"], $row["MENTEE"], $row["TEXT"], $row["TIMESTAMP"]));
+                    array_push($chats, new Chat($row["CHAT_ID"], $row["POST_ID"], $row["MENTOR"], $row["MENTEE"], $row["TEXT"], $row["TIMESTAMP"], $row["RECIPIENT"]));
                 }
                 return $chats;
             } catch (Exception $e) {
@@ -50,10 +50,10 @@
             try {
                 $chats = [];
                 $pdo = (new SQLConnection())->connect();
-                $stmt = $pdo->prepare("SELECT * FROM CHAT WHERE MENTEE = ?");
+                $stmt = $pdo->prepare("SELECT * FROM CHAT WHERE MENTEE = ? GROUP BY MENTOR AND MENTEE");
                 $stmt->execute([$mentee]);
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    array_push($chats, new Chat($row["CHAT_ID"], $row["POST_ID"], $row["MENTOR"], $row["MENTEE"], $row["TEXT"], $row["TIMESTAMP"]));
+                    array_push($chats, new Chat($row["CHAT_ID"], $row["POST_ID"], $row["MENTOR"], $row["MENTEE"], $row["TEXT"], $row["TIMESTAMP"], $row["RECIPIENT"]));
                 }
                 return $chats;
             } catch (Exception $e) {
@@ -68,7 +68,7 @@
                 $stmt = $pdo->prepare("SELECT * FROM CHAT WHERE CHAT_ID = ?");
                 $stmt->execute([$chat_id]);
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    return new Chat($row["CHAT_ID"], $row["POST_ID"], $row["MENTOR"], $row["MENTEE"], $row["TEXT"], $row["TIMESTAMP"]);
+                    return new Chat($row["CHAT_ID"], $row["POST_ID"], $row["MENTOR"], $row["MENTEE"], $row["TEXT"], $row["TIMESTAMP"], $row["RECIPIENT"]);
                 }
                 return null;
 
@@ -78,14 +78,14 @@
             }
         }
 
-        public function getChatsByMenteeMentor($mentee, $mentor) {
+        public function getChatsByMenteeMentorPostId($mentee, $mentor, $post_id) {
             try {
                 $chats = [];
                 $pdo = (new SQLConnection())->connect();
-                $stmt = $pdo->prepare("SELECT * FROM CHAT WHERE MENTEE = ? AND MENTOR = ?");
-                $stmt->execute([$mentee, $mentor]);
+                $stmt = $pdo->prepare("SELECT * FROM CHAT WHERE MENTEE = ? AND MENTOR = ? AND POST_ID = ? ORDER BY TIMESTAMP ASC");
+                $stmt->execute([$mentee, $mentor, $post_id]);
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    array_push($chats, new Chat($row["CHAT_ID"], $row["POST_ID"], $row["MENTOR"], $row["MENTEE"], $row["TEXT"], $row["TIMESTAMP"]));
+                    array_push($chats, new Chat($row["CHAT_ID"], $row["POST_ID"], $row["MENTOR"], $row["MENTEE"], $row["TEXT"], $row["TIMESTAMP"], $row["RECIPIENT"]));
                 }
                 return $chats;
             } catch (Exception $e) {

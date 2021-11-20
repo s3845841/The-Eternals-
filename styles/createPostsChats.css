@@ -1,7 +1,134 @@
+.aligncenter {
+    justify-self: center;
+    text-align: center;
+}
+
+.welcome {
+    text-align: center;
+    font-family: Neue Haas Unica;
+    font-weight: 600;
+    font-size: 4.0rem;
+    color: black;
+}
+
 p {
-    font-size:15px;
+    font-size: 15px;
 }
 
 form {
-    font-size:15px;
+    font-size: 15px;
+}
+
+.button1 {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.button2 {
+    background-color: white;
+    color: black;
+    border: 2px solid #008CBA;
+}
+
+.button2:hover {
+    background-color: #008CBA;
+    color: white;
+}
+
+.your-posts-label {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.posts-buttons {
+    border-radius: 35px;
+    border: none;
+    color: black;
+    background-color: cornflowerblue;
+    padding: 3px 30px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 6px 1px;
+    cursor: pointer;
+    margin-top: 7%;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.see-all-button {
+    min-width: max-content;
+}
+
+.chat-send-button {
+    min-width: max-content;
+}
+
+.report-button {
+    min-width: max-content;
+    background-color: red;
+}
+
+.chat-messages {
+    width: 100%;
+    padding: 10px 7.7%;
+    overflow: auto;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-start;
+    flex: 1;
+}
+
+.message-box-holder {
+    width: 60%;
+    margin: auto;
+    margin-bottom: 30px;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+}
+
+.message-box-receiver {
+    width: 60%;
+    margin: auto;
+    margin-bottom: 30px;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+}
+
+.message-box {
+    padding: 6px 10px;
+    border-radius: 6px 0 6px 0;
+    position: relative;
+    background: rgba(100, 170, 0, .1);
+    border: 2px solid rgba(100, 170, 0, .1);
+    color: #6c6c6c;
+    font-size: 18px;
+}
+
+.message-box:after {
+    content: "";
+    position: absolute;
+    border: 10px solid transparent;
+    border-top: 10px solid rgba(100, 170, 0, .2);
+    border-right: none;
+    bottom: -22px;
+    right: 10px;
+}
+
+.send-message {
+    display: flex;
+    flex-flow: column;
+    align-items: stretch;
+}
+
+.chat-input {
+    display: flex;
+    margin-left: 10%;
 }

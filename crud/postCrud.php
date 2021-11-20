@@ -47,6 +47,22 @@
             }
         }
 
+        public function getAllPosts() {
+            try {
+                $posts = [];
+                $pdo = (new SQLConnection())->connect();
+                $stmt = $pdo->prepare("SELECT * FROM POST");
+                $stmt->execute();
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    array_push($posts, new Post($row["POST_ID"], $row["EMAIL"], $row["ADDRESS"], $row["SUBJECT"], $row["DESCRIPTION"], $row["TIMESTAMP"]));
+                }
+                return $posts;
+            } catch (Exception $e) {
+                error_log($e->getMessage());
+                return [];
+            }
+        }
+
         public function getPostById($post_id) {
             try {
                 $pdo = (new SQLConnection())->connect();

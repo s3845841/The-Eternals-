@@ -7,6 +7,7 @@
     if (empty($_SESSION[USER_SESSION_KEY])){
        header('Location: ../');
     } else {
+        $currentUser = getLoggedInUser();
         $userCrud = new UserCrud();
         $postCrud = new PostCrud();
         $postId = $_GET['id'];
@@ -18,8 +19,7 @@
         $subject = $post->getSubject();
         $description = $post->getDescription();
 
-        $chat_id = rand();
-        $contactLink = "../chat/?chat_id=".strval($chat_id)."&post_id=".$postId."&mentee_id=".$mentee->getEmail()."&mentor_id=".$_SESSION[USER_SESSION_KEY]->getEmail();
+        $contactLink = "../chat/?post_id=".$postId."&mentee_id=".$mentee->getEmail()."&mentor_id=".$_SESSION[USER_SESSION_KEY]->getEmail();
     }
 
 
@@ -47,13 +47,15 @@
     <hr />
     <h4>Name: <?php echo $name?></h4>
     <br/>
-    <h4>Address: <?php echo $chat_id?></h4>
+    <h4>Address: <?php echo $address?></h4>
     <br/>
     <h4>Subject: <?php echo $subject?></h4>
     <br/>
     <h4>Question/Description: <?php echo $description?></h4>
     <br/>
-    <a class="btn btn-primary btn-lg" href="<?php echo $contactLink?>" role="button"> Contact this mentee!</a>
+    <?php if($currentUser->getMemberType() == "mentor") { ?>
+        <a class="btn btn-primary btn-lg" href="<?php echo $contactLink?>" role="button"> Contact this mentee!</a>
+    <?php } ?>
   </div>
 </body>
 </html>

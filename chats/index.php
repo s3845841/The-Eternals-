@@ -8,7 +8,12 @@
     $currentUser = getLoggedInUser();
     $postCrud = new PostCrud();
     $chatCrud = new ChatCrud();
-    $allChats = $chatCrud->getChatsByMentor($currentUser->getEmail());
+    if ($currentUser->getMemberType() == "mentor") {
+        $allChats = $chatCrud->getChatsByMentor($currentUser->getEmail());
+    } else {
+        $allChats = $chatCrud->getChatsByMentee($currentUser->getEmail());
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

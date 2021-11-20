@@ -7,6 +7,9 @@
     $currentUser = getLoggedInUser();
     $postCrud = new PostCrud();
     $allPosts = $postCrud->getAllPostsByEmail($currentUser->getEmail());
+    if ($currentUser->getMemberType() == "mentor") {
+        $allPosts = $postCrud->getAllPosts();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
