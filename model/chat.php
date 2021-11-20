@@ -15,7 +15,7 @@
             $this->mentee = $mentee;
             $this->text = $text;
             $this->timestamp = $timestamp;
-            $this->recipient = $recipient
+            $this->recipient = $recipient;
         }
 
         public function getChatId() {
