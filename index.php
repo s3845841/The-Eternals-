@@ -8,11 +8,14 @@
     $currentUser = getLoggedInUser();
     $postCrud = new PostCrud();
     $chatCrud = new ChatCrud();
-    $allPosts = $postCrud->getAllPostsByEmail($currentUser->getEmail());
-    if ($currentUser->getMemberType() == "mentor") {
-        $allChats = $chatCrud->getChatsByMentor($currentUser->getEmail());
-    } else {
-        $allChats = $chatCrud->getChatsByMentee($currentUser->getEmail());
+    $allChats = [];
+    if (!empty($_SESSION[USER_SESSION_KEY])){
+        $allPosts = $postCrud->getAllPostsByEmail($currentUser->getEmail());
+        if ($currentUser->getMemberType() == "mentor") {
+            $allChats = $chatCrud->getChatsByMentor($currentUser->getEmail());
+        } else {
+            $allChats = $chatCrud->getChatsByMentee($currentUser->getEmail());
+        }
     }
 ?>
 <!doctype html>

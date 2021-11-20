@@ -59,7 +59,7 @@
                 <h2 class="your-posts-label">Mentor (<?php echo $mentor->getEmail()?>)</h2>
             </div>
 
-            <div class="col-sm-7"></div>
+            <div class="col-sm-6"></div>
 
             <div class="col-sm-2">
                 <h2 class="your-posts-label">Mentee(You) (<?php echo $mentee->getEmail()?>)</h2>
@@ -69,7 +69,7 @@
                 <h2 class="your-posts-label">Mentee (<?php echo $mentee->getEmail()?>)</h2>
             </div>
 
-            <div class="col-sm-7"></div>
+            <div class="col-sm-6"></div>
 
             <div class="col-sm-1">
                 <h2 class="your-posts-label">You(Mentor) (<?php echo $mentor->getEmail()?>)</h2>
@@ -79,7 +79,7 @@
         </div>
 
         <hr/>
-    <div class="aligncenter">
+    <!-- <div class="aligncenter"> -->
         <div class="chat-messages">
             <!-- Holder side - notice the class -->
             <?php foreach ($chats as $chat): ?>
@@ -99,7 +99,7 @@
             <?php endforeach; ?>
         </div>
 
-    </div>
+    <!-- </div> -->
 
         <p style="page-break-after: always;">&nbsp;</p>
         <p style="page-break-before: always;">&nbsp;</p>

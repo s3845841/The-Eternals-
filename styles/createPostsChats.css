@@ -85,18 +85,16 @@ form {
 }
 
 .message-box-holder {
-    width: 60%;
-    margin: auto;
-    margin-bottom: 30px;
+    width: 100%;
+    margin: 0 0 15px;
     display: flex;
     flex-flow: column;
     align-items: flex-end;
 }
 
 .message-box-receiver {
-    width: 60%;
-    margin: auto;
-    margin-bottom: 30px;
+    width: 100%;
+    margin: 0 0 15px;
     display: flex;
     flex-flow: column;
     align-items: flex-start;
@@ -109,7 +107,7 @@ form {
     background: rgba(100, 170, 0, .1);
     border: 2px solid rgba(100, 170, 0, .1);
     color: #6c6c6c;
-    font-size: 18px;
+    font-size: 12px;
 }
 
 .message-box:after {
