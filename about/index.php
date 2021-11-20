@@ -29,5 +29,6 @@
         Founding Members - 
         Aman Khan, Aditya Vadgama, Jeremy Ng Kwik Tung, Harshita Kumar and Linda Vu.</p>
     </article>
+    <br><br>
     </body>
 </html>

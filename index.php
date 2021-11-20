@@ -184,14 +184,14 @@
                 <div class="col-sm-1"></div>
                 
                 <div class="col-sm-4">
-                    <img class="home-page-image" src="images/1.png" alt="" width="70%" height="70%">
+                    <img class="home-page-images" src="images/1.png" alt="" width="70%" height="70%">
                     </br>
                     <a href="register/"><button type="button" class="home-page-button button1">Seek help as a Mentee</button></a>
                 </div>
     
                 
                 <div class="col-sm-4">
-                    <img class="home-page-image" src="images/2.png" alt="" width="65%" height="65%">
+                    <img class="home-page-images" src="images/2.png" alt="" width="65%" height="65%">
                     </br>
                     <a href="register/"><button type="button" class="home-page-button button2">Volunteer as a Mentor</button></a>
                 </div>
