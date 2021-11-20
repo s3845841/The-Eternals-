@@ -12,8 +12,8 @@
         public function create(Chat $chat) {
             try {
                 $pdo = (new SQLConnection())->connect();
-                $stmt = $pdo->prepare("INSERT INTO CHAT (CHAT_ID, POST_ID, MENTOR, MENTEE, TEXT, TIMESTAMP) VALUES (?, ?, ?, ?, ?, ?)");
-                $stmt->execute([$chat->getChatId(), $chat->getPostId(), $chat->getMentor(), $chat->getMentee(), $chat->getText(), $chat->getTimestamp()]);
+                $stmt = $pdo->prepare("INSERT INTO CHAT (CHAT_ID, POST_ID, MENTOR, MENTEE, TEXT, TIMESTAMP, RECIPIENT) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                $stmt->execute([$chat->getChatId(), $chat->getPostId(), $chat->getMentor(), $chat->getMentee(), $chat->getText(), $chat->getTimestamp(), $chat->getRecipient()]);
 
             } catch (Exception $e) {
                 error_log($e->getMessage());

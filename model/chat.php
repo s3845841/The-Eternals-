@@ -8,13 +8,14 @@
         private String $text;
         private int $timestamp;
 
-        public function __construct(int $chat_id, int $post_id, String $mentor, String $mentee, String $text, int $timestamp) {
+        public function __construct(int $chat_id, int $post_id, String $mentor, String $mentee, String $text, int $timestamp, String $recipient) {
             $this->chat_id = $chat_id;
             $this->post_id = $post_id;
             $this->mentor = $mentor;
             $this->mentee = $mentee;
             $this->text = $text;
             $this->timestamp = $timestamp;
+            $this->recipient = $recipient
         }
 
         public function getChatId() {
@@ -56,5 +57,13 @@
         public function setTimestamp(String $timestamp) {
             $this->timestamp = $timestamp;
         }
-    }
+
+       public function getRecipient() {
+             return $this->recipient;
+       }
+
+       public function setRecipient(String $recipient) {
+            $this->recipient = $recipient;
+       }
+}
 ?>
