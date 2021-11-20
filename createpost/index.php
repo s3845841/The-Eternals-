@@ -1,3 +1,26 @@
+<?php require_once('../crud/postCrud.php'); ?>
+<?php require_once('../model/user.php'); ?>
+<?php require_once('../includes/functions.inc.php'); ?>
+<?php
+    $name = $email = "";
+    if (empty($_SESSION[USER_SESSION_KEY])){
+        header('Location: ../');
+    } else {
+        $name = $_SESSION[USER_SESSION_KEY]->getName();
+        $email = $_SESSION[USER_SESSION_KEY]->getEmail();
+    }
+
+    $date = new DateTime();
+
+    if (isset($_POST['post'])) {
+        $postCrud = new PostCrud();
+        $randomNumber = rand();
+        $post = new Post($randomNumber, $email, $_POST['address'], $_POST['subject'], $_POST['description'], $date->getTimestamp());
+        $postCrud->create($post);
+        header('Location: ../');
+        exit();
+    }
+?>
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -15,90 +38,30 @@
   </head>
 <body>
   <?php  require_once('../includes/header.inc.php'); ?>
-  <?php
-    // define variables and set to empty values
-    $nameErr = $emailErr = $addressErr = $subjectErr = $textErr =  "";
-    $name = $email = $address = $subject = $text = $timestamp = "";
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      if (empty($_POST["name"])) {
-        $nameErr = "Name is required";
-      } else {
-        $name = test_input($_POST["name"]);
-        // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
-          $nameErr = "Only letters and white space allowed";
-        }
-      }
-
-      if (empty($_POST["address"])) {
-        $addressErr = "Address is required";
-      } else {
-        $address = test_input($_POST["address"]);
-        // check if address is well-formed
-        if (!preg_match("/^[a-zA-Z-' ]*$/",$address)) {
-          $addressErr = "Only letters and white space allowed";
-        }
-      }
-
-      if (empty($_POST["subject"])) {
-        $subjectErr = "Subject is required";
-      } else {
-        $subject = test_input($_POST["subject"]);
-        // check if subject is well-formed
-        if (!preg_match("/^[a-zA-Z-' ]*$/",$subject)) {
-          $subjectErr = "Only letters and white space allowed";
-        }
-      }
-
-      if (empty($_POST["text"])) {
-        $textErr = "Description is required";
-      } else {
-        $text = test_input($_POST["text"]);
-      }
-
-      $timestamp = date("F j, Y, g:i a");
-      $email = "test@gmail.com";
-      // $email = $_SESSION[USER_SESSION_KEY]->getEmail();
-
-    }
-
-  function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-  }
-  ?>
   <br/>
   <div class = "text-center">
     <h1>Create a Post</h1>
     <p><span class="error">* required field</span></p>
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-      Name: <input type="text" name="name" value="<?php echo $name;?>">
-      <span class="error">* <?php echo $nameErr;?></span>
+    <form method="post"  method="post">
+      Name: <?php echo $name;?>
       <br><br>
-      Address: <input type="text" name="address" value="<?php echo $address;?>">
-      <span class="error">* <?php echo $addressErr;?></span>
+      <div class="noselect">
+        <label for="address">Address</label>
+      </div>
+      <input type="text" id="address" name="address" required>
       <br><br>
-      Description/Question: <textarea name="text" rows="5" cols="40"> <?php echo $text;?></textarea><span class="error"> *</span>
+      <div class="noselect">
+          <label for="subject">Subject<span class="error">*</span></label>
+      </div>
+      <input type="text" id="subject" name="subject" required>
       <br><br>
-      <input type="submit" name="submit" value="Submit">
+      <div class="noselect">
+        <label for="description">Description<span class="error">*</span></label>
+      </div>
+      <textarea rows="5" cols="40" id="description" name="description" required></textarea>
+      <br><br>
+      <input id="post" name="post" type="submit" value="Post">
     </form>
-
-    <?php
-    echo "<br>";
-    echo "<h2>Input Input:</h2>";
-    echo $name;
-    echo "<br>";
-    echo $email;
-    echo "<br>";
-    echo $address;
-    echo "<br>";
-    echo $text;
-    echo "<br>";
-    echo $timestamp;
-    ?>
   </div>
 </body>
 </html>
