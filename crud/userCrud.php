@@ -72,5 +72,21 @@
                 return false;
             }
         }
+
+         public function getUserByEmail($email) {
+            try {
+                $pdo = (new SQLConnection())->connect();
+                $stmt = $pdo->prepare("SELECT * FROM USER WHERE email = ?");
+                $stmt->execute([$email]);
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    return new User($row["EMAIL"], $row["NAME"], $row["MEMBER_TYPE"], $row["PASSWORD"], $row["WORKING_WITH_CHILDREN"]);
+                }
+                return null;
+
+            } catch (Exception $e) {
+                error_log($e->getMessage());
+                return null;
+            }
+        }
     }
 ?>

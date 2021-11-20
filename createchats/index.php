@@ -1,3 +1,27 @@
+<?php require_once('../crud/chatCrud.php'); ?>
+<?php require_once('../model/user.php'); ?>
+<?php require_once('../includes/functions.inc.php'); ?>
+<?php
+    $name = $post_id = "";
+    if (empty($_SESSION[USER_SESSION_KEY])){
+        header('Location: ../');
+    } else {
+        $name = $_SESSION[USER_SESSION_KEY]->getName();
+        $email = $_SESSION[USER_SESSION_KEY]->getEmail();
+    }
+
+    $date = new DateTime();
+
+    if (isset($_POST['chat'])) {
+        $chatCrud = new ChatCrud();
+        $randomNumber = rand();
+        $chat = new Chat($randomNumber, $post_id, $_POST['address'], $_POST['subject'], $_POST['description'], $date->getTimestamp());
+        $postCrud->create($post);
+        header('Location: ../');
+        exit();
+    }
+?>
+
 <!DOCTYPE HTML>
 <html>
   <head>

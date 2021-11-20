@@ -42,7 +42,7 @@
   <div class = "text-center">
     <h1>Create a Post</h1>
     <p><span class="error">* required field</span></p>
-    <form method="post"  method="post">
+    <form id="form" method="post">
       Name: <?php echo $name;?>
       <br><br>
       <div class="noselect">
