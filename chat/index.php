@@ -19,7 +19,7 @@
     if (isset($_POST['post'])) {
         $chatCrud = new ChatCrud();
         $randomNumber = rand();
-        $chatMessage = new Chat($randomNumber, $params['post_id'], $mentor->getEmail(), $mentee->getEmail(), $_POST['text'], $date->getTimestamp());
+        $chatMessage = new Chat($randomNumber, $params['post_id'], $mentor->getEmail(), $mentee->getEmail(), $_POST['text'], $date->getTimestamp(), $_SESSION[USER_SESSION_KEY]->getEmail());
         $chatCrud->create($chatMessage);
         header('Refresh:0');
         exit();
