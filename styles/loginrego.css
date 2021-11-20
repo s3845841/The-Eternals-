@@ -1,0 +1,91 @@
+.formcontainer {
+    padding: 20pt;
+    border-radius: 5pt;
+    max-width: 300pt;
+    min-width: 300pt;
+    margin: auto;
+    margin-top: 80pt;
+    position: relative;
+}
+
+.aligncenter {
+    text-align: center;
+}
+
+label {
+    font-size: medium;
+    padding: 12pt 13pt 12pt 0;
+    display: inline-block;
+}
+
+input[type=text],
+input[type=password],
+select {
+    text-align: center;
+    background-color: #ffffff;
+    width: 100%;
+    padding: 7pt;
+    border: 1pt solid #acacac;
+    border-radius: 9pt;
+    resize: vertical;
+}
+
+#login {
+    width: 100pt;
+    font-weight: bold;
+    padding: 10pt 0 10pt 0;
+    border: none;
+    border-radius: 9pt;
+    cursor: pointer;
+    text-align: center;
+    border: 1pt solid #000000;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+#login:hover {
+    border: 1pt solid #646464;
+    background-color: #d4d4d4;
+}
+
+#register {
+    width: 100pt;
+    font-weight: bold;
+    color: #fff;
+    padding: 10pt 0 10pt 0;
+    border: none;
+    border-radius: 9pt;
+    cursor: pointer;
+    text-align: center;
+    background-color: #000000;
+}
+
+#register:hover {
+    background-color: #424242;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+    supported by Chrome, Edge, Opera and Firefox */
+}
+
+#form .error {
+    color: #fd2600;
+    display: inline;
+    padding: 5pt 5pt 0 0;
+}
+
+#wwcg {
+    display: none;
+}

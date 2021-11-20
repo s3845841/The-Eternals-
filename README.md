@@ -1,7 +1,7 @@
 # The Eternals
 Project Code for HackVision 2021 - Team 4. The application an online/local homework help website written using PHP, SQL, HTML and CSS.
 
-* Test Account Login Details: Username = test; Password = test
+* Test Account Login Details: Email = test@gmail.com; Password = test
 
 # Running the code
 1. Download XAMPP
