@@ -5,14 +5,18 @@
 <?php require_once('../crud/chatCrud.php'); ?>
 <?php require_once('../crud/postCrud.php'); ?>
 <?php
-    $currentUser = getLoggedInUser();
-    $postCrud = new PostCrud();
-    $chatCrud = new ChatCrud();
-    if ($currentUser->getMemberType() == "mentor") {
-        $allChats = $chatCrud->getChatsByMentor($currentUser->getEmail());
-    } else {
-        $allChats = $chatCrud->getChatsByMentee($currentUser->getEmail());
-    }
+    if (empty($_SESSION[USER_SESSION_KEY])){
+        header('Location: ../');
+     } else {
+         $currentUser = getLoggedInUser();
+         $postCrud = new PostCrud();
+         $chatCrud = new ChatCrud();
+         if ($currentUser->getMemberType() == "mentor") {
+             $allChats = $chatCrud->getChatsByMentor($currentUser->getEmail());
+         } else {
+             $allChats = $chatCrud->getChatsByMentee($currentUser->getEmail());
+         }
+     }
 
 ?>
 <!DOCTYPE html>
@@ -21,6 +25,7 @@
         <title>Chats</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">   
+        <link rel="icon" href="../images/logo.png">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -32,7 +37,7 @@
     <?php require_once('../includes/header.inc.php'); ?>
     <br>
     <article>
-        <h1 class="aligncenter">Chats</h1>
+        <h1 class="welcome">Chats</h1>
         <br>
         <?php if (count($allChats) > 0) { ?>
                 <table>

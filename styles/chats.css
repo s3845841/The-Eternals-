@@ -21,3 +21,11 @@ tr:hover {
     cursor: pointer;
     background-color: #e2e2e2;
 }
+
+.welcome {
+    text-align: center;
+    font-family: Neue Haas Unica;
+    font-weight: 600;
+    font-size: 4.0rem;
+    color: black;
+}

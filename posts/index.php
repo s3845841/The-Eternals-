@@ -4,11 +4,17 @@
 <?php require_once('../crud/postCrud.php'); ?>
 
 <?php
-    $currentUser = getLoggedInUser();
-    $postCrud = new PostCrud();
-    $allPosts = $postCrud->getAllPostsByEmail($currentUser->getEmail());
-    if ($currentUser->getMemberType() == "mentor") {
-        $allPosts = $postCrud->getAllPosts();
+
+    if (empty($_SESSION[USER_SESSION_KEY])){
+        header('Location: ../');
+    } else {
+        $currentUser = getLoggedInUser();
+        $postCrud = new PostCrud();
+        $allPosts = $postCrud->getAllPostsByEmail($currentUser->getEmail());
+        if ($currentUser->getMemberType() == "mentor") {
+            $allPosts = $postCrud->getAllPosts();
+        }
+
     }
 ?>
 <!DOCTYPE html>
@@ -29,7 +35,7 @@
     <?php require_once('../includes/header.inc.php'); ?>
     <br>
     <article>
-        <h1 class="aligncenter">Posts</h1>
+        <h1 class="welcome">Posts</h1>
         <br>
         <?php if (count($allPosts) > 0) { ?>
             <table>

@@ -39,6 +39,7 @@
 
         <div class="container-fluid">
         <?php if (isset($currentUser)) { ?>
+            <br>
             <!-- If logged in, show dashboard -->
             <h1 class="welcome">Dashboard</h1>
             <?php if ($currentUser->getMemberType() == "mentee") { ?>
